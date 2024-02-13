@@ -14,10 +14,18 @@ def roll_dice():
 def do_roll():
     res = randint(1, 6)
 
-    with tracer.start_as_current_span("do_roll"):
+    with tracer.start_as_current_span("do_roll", record_exception=True):
         current_span = trace.get_current_span()
         current_span.set_attribute("roll.value", res)
-        current_span.add_event("This is a span event")
+        current_span.set_status(trace.StatusCode.ERROR)
+        
+
+        # Add attributes for span event
+        attributes = {}
+        attributes["key1"] = "value1"
+        attributes["key2"] = "value2"
+
+        current_span.add_event("This is a span event", attributes=attributes)
 
         logging.getLogger().error("This is a log message")
 

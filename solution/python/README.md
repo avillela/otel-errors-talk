@@ -40,6 +40,7 @@ Start server by opening up a new terminal window:
 
 ```
 source solution/python/venv/bin/activate
+# The fist one is the important one
 export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
 export OTEL_PYTHON_LOG_CORRELATION=true
 opentelemetry-instrument \
