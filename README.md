@@ -1,13 +1,7 @@
-# OTel Python Lab
+# OTel Errors - Python Example
 
-This is the companion repo for Module 6 of the O'Reilly Observability Fundamentals video course.
-
-## References
-
-Course references can be found [here](./docs/references.md)
+This is the companion repo for the Observability Day Talk, "Dude, Where's My Error"
 
 ## Quickstart
 
-The full tutorial instructions can be found in Module 6 of the O'Reilly Observability Fundamentals course. 
-
-You can access the quickstart [here](./docs/quickstart.md)
+Check out the quickstart [here](./src/python/README.md)

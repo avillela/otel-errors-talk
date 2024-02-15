@@ -2,6 +2,11 @@ import os
 import time
 import requests
 
+from opentelemetry import trace
+
+tracer = trace.get_tracer_provider().get_tracer(__name__)
+
+@tracer.start_as_current_span("send_requests")
 def send_requests(url):
     try:
         res = requests.get(url)
