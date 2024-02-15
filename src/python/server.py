@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/rolldice")
 def roll_dice():
-    logging.getLogger().info("WTF DUDE")
+    logging.getLogger().debug("WTF DUDE")
     res = ""
     try:
         res = str(do_roll())
@@ -37,7 +37,7 @@ def do_roll():
 
         span.add_event("This is a span event", attributes=attributes)
 
-        logging.getLogger().info("This is a log message")
+        logging.getLogger().warning("This is a log message!!")
 
         request_counter.add(1)
         

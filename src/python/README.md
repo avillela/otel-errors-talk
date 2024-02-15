@@ -42,18 +42,13 @@ Start server by opening up a new terminal window:
 source src/python/venv/bin/activate
 export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
 export OTEL_PYTHON_LOG_CORRELATION=true
+export OTEL_PYTHON_LOG_LEVEL=debug
 opentelemetry-instrument \
     --traces_exporter console,otlp \
     --metrics_exporter console,otlp \
     --logs_exporter console,otlp \
     --service_name test-py-server \
     python src/python/server.py
-
-
-# Other environment vars available for use
-export OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
-export OTEL_PYTHON_LOG_CORRELATION=true
-export OTEL_PYTHON_LOG_LEVEL=debug
 ```
 
 Start up client in a new terminal window:
