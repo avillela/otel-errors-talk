@@ -43,6 +43,7 @@ source solution/python/venv/bin/activate
 # The fist one is the important one
 export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
 export OTEL_PYTHON_LOG_CORRELATION=true
+export OTEL_PYTHON_LOG_LEVEL=debug
 opentelemetry-instrument \
     --traces_exporter console,otlp \
     --metrics_exporter console,otlp \
