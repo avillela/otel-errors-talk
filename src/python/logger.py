@@ -9,12 +9,12 @@ from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.sdk.resources import Resource
 
 
-def init_logger():
+def init_logger(service_name):
     
     logger_provider = LoggerProvider(
         resource=Resource.create(
             {
-                'service.name': __name__,
+                'service.name': service_name,
             }
         ),
     )

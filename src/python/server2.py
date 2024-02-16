@@ -56,6 +56,6 @@ if __name__ == "__main__":
     request_counter = meter.create_counter(name="request_counter", description="Number of requests", unit="1")
 
     # Init logs
-    logger = logger.init_logger()
+    logger = logger.init_logger(__name__)
 
     app.run(host="0.0.0.0", port=8082, debug=True, use_reloader=False)
