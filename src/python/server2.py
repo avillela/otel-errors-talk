@@ -1,21 +1,15 @@
-import logging
+import logger
 from random import randint
 from flask import Flask
 
 from opentelemetry import trace, metrics
 
-from opentelemetry._logs import set_logger_provider
-from opentelemetry.exporter.otlp.proto.grpc._log_exporter import (
-    OTLPLogExporter,
-)
-from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
-from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
-from opentelemetry.sdk.resources import Resource
 
 app = Flask(__name__)
 
 @app.route("/rolldice")
 def roll_dice():
+    logger.info("I'm rolling some dice here!")
     res = ""
     try:
         res = str(do_roll())
@@ -24,7 +18,6 @@ def roll_dice():
         with tracer.start_as_current_span("odd_number") as span:
             span.record_exception(e)
             print(f"PRINT: Returning value {res} from exception {str(e)}")
-            # logging.getLogger().error("Uh-oh. We have an exception")
             logger.error(f"Uh-oh. We have an exception. Returning {res}")
         
     return res
@@ -45,7 +38,6 @@ def do_roll():
 
         span.add_event("This is a span event", attributes=attributes)
 
-        # logging.getLogger().warning("This is a log message!!")
         logger.info("This is a log message!!")
 
         request_counter.add(1)
@@ -63,22 +55,7 @@ if __name__ == "__main__":
     meter = metrics.get_meter_provider().get_meter(__name__)
     request_counter = meter.create_counter(name="request_counter", description="Number of requests", unit="1")
 
-    # Initialize Logs
-    logger_provider = LoggerProvider(
-        resource=Resource.create(
-            {
-                'service.name': __name__,
-            }
-        ),
-    )
-    set_logger_provider(logger_provider)
-    log_exporter = OTLPLogExporter(insecure=True)
-    logger_provider.add_log_record_processor(BatchLogRecordProcessor(log_exporter))
-    handler = LoggingHandler(level=logging.NOTSET, logger_provider=logger_provider)
-
-
-    # Attach OTLP handler to logger
-    logger = logging.getLogger('main')
-    logger.addHandler(handler)
+    # Init logs
+    logger = logger.init_logger()
 
     app.run(host="0.0.0.0", port=8082, debug=True, use_reloader=False)
