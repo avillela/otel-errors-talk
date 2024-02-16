@@ -5,6 +5,7 @@ from flask import Flask
 from opentelemetry import trace, metrics
 
 app = Flask(__name__)
+logging.getLogger().setLevel(logging.DEBUG)
 
 @app.route("/rolldice")
 def roll_dice():
@@ -37,7 +38,7 @@ def do_roll():
 
         span.add_event("This is a span event", attributes=attributes)
 
-        logging.getLogger().warning("This is a log message!!")
+        logging.getLogger().info("This is a log message!!")
 
         request_counter.add(1)
         
