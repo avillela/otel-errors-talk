@@ -2,5 +2,5 @@
 pyenv.cfg
 *example*
 .DS_Store
-otelcol-config-extras.yml
+otelcol-config-extras*.yml
 __pycache__

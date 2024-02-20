@@ -16,8 +16,8 @@ opentelemetry-bootstrap -a install
 ## Docker Compose
 
 ```bash
-docker compose -f docker-compose.yml --env-file .env build
-docker compose -f docker-compose.yml --env-file .env up
+docker compose build
+docker compose up
 ```
 
 >**NOTE:** Use `--no-cache` to build without cached layers.
