@@ -4,7 +4,7 @@ This is the companion repo for the [Observability Day EU 2024 Talk, "Dude, Where
 
 View the slides [here](https://youtu.be/LJd1pJ0k28g?si=Z9nTsr3dZu3fbakx).
 
-Talk video coming soon.
+Check out the talk video [here](https://youtu.be/mfIaqvPHAjE?si=okro2Le44FYjliSE).
 
 ## Quickstart
 
